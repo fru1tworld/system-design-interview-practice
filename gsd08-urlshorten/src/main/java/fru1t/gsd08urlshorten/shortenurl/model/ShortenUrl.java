@@ -1,7 +1,8 @@
-package fru1t.gsd08urlshorten.shortenurl;
+package fru1t.gsd08urlshorten.shortenurl.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ public class ShortenUrl {
     @Id
     private Long id;
     private String shortenUrl;
+    @Column(length = 2083)
     private String sourceUrl;
     private LocalDateTime creationAt;
 

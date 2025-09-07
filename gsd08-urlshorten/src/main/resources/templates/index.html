@@ -32,7 +32,7 @@
             font-weight: 600;
             color: #555;
         }
-        input[type="url"] {
+        input[type="text"] {
             width: 100%;
             padding: 12px 16px;
             border: 2px solid #ddd;
@@ -92,27 +92,76 @@
 <body>
     <div class="container">
         <h1>URL Shortener</h1>
-        
-        <form action="/shorten" method="post">
+
+        <form id="shortenForm">
             <div class="form-group">
                 <label for="originalUrl">원본 URL을 입력하세요:</label>
-                <input type="url" id="originalUrl" name="originalUrl" 
+                <input type="text" id="originalUrl" name="originalUrl"
                        placeholder="https://example.com" required>
             </div>
             <button type="submit" class="btn">단축 URL 생성</button>
         </form>
 
-        <div th:if="${shortenedUrl}" class="result">
-            <h3>단축 URL이 생성되었습니다!</h3>
-            <div class="shorten-url" th:text="${shortenedUrl}"></div>
-            <button class="btn copy-btn" onclick="copyToClipboard()">복사하기</button>
-        </div>
     </div>
 
     <script>
-        function copyToClipboard() {
-            const shortenUrl = document.querySelector('.shorten-url').textContent;
-            navigator.clipboard.writeText(shortenUrl).then(() => {
+        function normalizeUrl(url) {
+            if (!url) return url;
+
+            let trimmed = url.trim();
+
+            if (!/^https?:\/\//i.test(trimmed)) {
+                trimmed = 'http://' + trimmed;
+            }
+            return trimmed;
+        }
+
+        document.getElementById('shortenForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const originalUrl = document.getElementById('originalUrl').value;
+            const normalizedUrl = normalizeUrl(originalUrl);
+
+            document.getElementById('originalUrl').value = normalizedUrl;
+
+            fetch('/shorten', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    originalUrl: normalizedUrl
+                })
+            })
+            .then(response => response.text())
+            .then(shortenedUrl => {
+                showResult(shortenedUrl);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('오류가 발생했습니다.');
+            });
+        });
+
+        function showResult(shortenedUrl) {
+            const existingResult = document.querySelector('.result');
+            if (existingResult) {
+                existingResult.remove();
+            }
+
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = `
+                <h3>단축 URL이 생성되었습니다!</h3>
+                <div class="shorten-url">${shortenedUrl}</div>
+                <button class="btn copy-btn" onclick="copyToClipboard('${shortenedUrl}')">복사하기</button>
+            `;
+
+            document.querySelector('.container').appendChild(resultDiv);
+        }
+
+        function copyToClipboard(url) {
+            navigator.clipboard.writeText(url).then(() => {
                 alert('단축 URL이 클립보드에 복사되었습니다!');
             });
         }
