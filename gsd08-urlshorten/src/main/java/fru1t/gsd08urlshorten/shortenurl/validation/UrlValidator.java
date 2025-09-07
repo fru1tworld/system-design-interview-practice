@@ -1,12 +1,9 @@
 package fru1t.gsd08urlshorten.shortenurl.validation;
 
 import jakarta.validation.*;
-import lombok.extern.log4j.Log4j;
-import lombok.extern.slf4j.Slf4j;
 
 import static org.apache.commons.validator.routines.UrlValidator.ALLOW_LOCAL_URLS;
 
-@Slf4j
 public class UrlValidator implements ConstraintValidator<ValidUrl, String> {
 
     private final org.apache.commons.validator.routines.UrlValidator apacheValidator =

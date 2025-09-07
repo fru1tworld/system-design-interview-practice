@@ -13,6 +13,7 @@ public class ShortenUrl {
     @Id
     private Long id;
     private String shortenUrl;
+
     @Column(length = 2083)
     private String sourceUrl;
     private LocalDateTime creationAt;

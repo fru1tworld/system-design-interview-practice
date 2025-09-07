@@ -3,6 +3,7 @@ package fru1t.gsd08urlshorten.shortenurl;
 import fru1t.gsd08urlshorten.shortenurl.model.ShortenUrlCreateRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
@@ -29,6 +30,7 @@ public class ShortenUrlController {
         RedirectView redirectView = new RedirectView();
         String redirectUrl = shortenUrlService.readShortenUrl(shortenUrl);
         redirectView.setUrl(redirectUrl);
+        redirectView.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
         return redirectView;
     }
 }
