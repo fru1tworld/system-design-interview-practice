@@ -5,4 +5,4 @@
 
 ### 실제 화면
 
-![img.png](/url-sorten/docs/images/gsd08.png)
+![img.png](../docs/images/gsd08.png)
