@@ -1,5 +1,6 @@
 package fru1t.gsd08urlshorten.shortenurl;
 
+import com.sun.net.httpserver.Headers;
 import fru1t.gsd08urlshorten.shortenurl.model.ShortenUrlCreateRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,7 @@ public class ShortenUrlController {
         String redirectUrl = shortenUrlService.readShortenUrl(shortenUrl);
         redirectView.setUrl(redirectUrl);
         redirectView.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
+
         return redirectView;
     }
 }

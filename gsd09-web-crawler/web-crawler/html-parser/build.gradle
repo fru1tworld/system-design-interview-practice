@@ -1,0 +1,19 @@
+dependencies {
+    implementation project(':common:event')
+    
+    // 정적 HTML 파싱
+    implementation 'org.jsoup:jsoup:1.17.2'
+    
+    // 동적 HTML 파싱 (Selenium)
+    implementation 'org.seleniumhq.selenium:selenium-java:4.15.0'
+    implementation 'org.seleniumhq.selenium:selenium-chrome-driver:4.15.0'
+    implementation 'org.seleniumhq.selenium:selenium-firefox-driver:4.15.0'
+    
+    // WebDriver Manager (드라이버 자동 관리)
+    implementation 'io.github.bonigarcia:webdrivermanager:5.6.2'
+    
+    // Kafka Consumer
+    implementation 'org.springframework.kafka:spring-kafka'
+}
+
+bootJar.enabled = true

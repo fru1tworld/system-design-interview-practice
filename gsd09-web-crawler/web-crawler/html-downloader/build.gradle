@@ -1,0 +1,9 @@
+dependencies {
+    implementation project(':common:event')
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    
+    // Kafka Producer
+    implementation 'org.springframework.kafka:spring-kafka'
+}
+
+bootJar.enabled = true

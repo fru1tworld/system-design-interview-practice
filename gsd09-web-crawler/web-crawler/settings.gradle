@@ -1,0 +1,11 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'web-crawler'
+
+include 'common:event'
+include 'web-crawler-app'
+include 'html-downloader'
+include 'html-parser'

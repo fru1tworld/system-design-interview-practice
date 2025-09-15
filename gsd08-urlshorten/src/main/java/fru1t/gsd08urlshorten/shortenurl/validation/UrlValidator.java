@@ -23,5 +23,4 @@ public class UrlValidator implements ConstraintValidator<ValidUrl, String> {
         String normalizedUrl = trimmed.startsWith("http") ? trimmed : "http://" + trimmed;
         return apacheValidator.isValid(normalizedUrl);
     }
-
 }

@@ -1,0 +1,12 @@
+dependencies {
+    implementation project(':common:event')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'com.fasterxml.uuid:java-uuid-generator:5.1.0'
+
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+}
+
+bootJar.enabled = true
