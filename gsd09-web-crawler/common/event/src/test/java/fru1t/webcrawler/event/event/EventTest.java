@@ -1,6 +1,6 @@
-package fru1t.webcrawler.event.event;
+package event.event;
 
-import fru1t.webcrawler.event.event.payload.UrlDiscoveryCreatePayload;
+import event.event.payload.UrlDiscoveryCreatePayload;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;

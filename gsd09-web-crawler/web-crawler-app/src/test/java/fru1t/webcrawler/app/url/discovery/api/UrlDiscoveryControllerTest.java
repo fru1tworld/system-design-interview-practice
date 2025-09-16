@@ -1,12 +1,13 @@
 package fru1t.webcrawler.app.url.discovery.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fru1t.webcrawler.app.url.discovery.request.UrlDiscoveryRequestDto;
-import fru1t.webcrawler.app.url.discovery.request.UrlDiscoveryBatchResponseDto;
-import fru1t.webcrawler.app.url.discovery.response.UrlDiscoveryResponseDto;
-import fru1t.webcrawler.common.event.Event;
-import fru1t.webcrawler.common.event.EventPayload;
-import fru1t.webcrawler.common.event.payload.UrlDiscoveryCreatePayload;
+import url.discovery.request.UrlDiscoveryRequestDto;
+import url.discovery.request.UrlDiscoveryBatchResponseDto;
+import url.discovery.response.UrlDiscoveryResponseDto;
+import event.event.Event;
+import event.event.EventPayload;
+import event.event.payload.UrlDiscoveryCreatePayload;
+import org.springframework.kafka.test.EmbeddedKafkaBroker;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -35,11 +36,10 @@ import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = webcrawler.WebCrawlerAppApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @DirtiesContext
 @EmbeddedKafka(partitions = 1,
-    topics = {"fru1tworld-webcrawling-url-discovery-v1"},
-    brokerProperties = {"listeners=PLAINTEXT://localhost:9092", "port=9092"})
+    topics = {"fru1tworld-webcrawling-url-discovery-v1"})
 @TestPropertySource(properties = {
     "spring.kafka.bootstrap-servers=${spring.embedded.kafka.brokers}",
     "spring.kafka.producer.bootstrap-servers=${spring.embedded.kafka.brokers}"
@@ -58,10 +58,13 @@ class UrlDiscoveryControllerTest {
     private KafkaMessageListenerContainer<String, String> container;
     private BlockingQueue<ConsumerRecord<String, String>> records;
 
+    @Autowired
+    private EmbeddedKafkaBroker embeddedKafka;
+
     @BeforeEach
     void setUp() {
         Map<String, Object> consumerProps = Map.of(
-            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092",
+            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, embeddedKafka.getBrokersAsString(),
             ConsumerConfig.GROUP_ID_CONFIG, "api-test-group",
             ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest",
             ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
