@@ -19,7 +19,7 @@ subprojects {
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
 	
-	sourceCompatibility = '21'
+	sourceCompatibility = '24'
 	
 	dependencies {
 		implementation 'org.springframework.boot:spring-boot-starter'

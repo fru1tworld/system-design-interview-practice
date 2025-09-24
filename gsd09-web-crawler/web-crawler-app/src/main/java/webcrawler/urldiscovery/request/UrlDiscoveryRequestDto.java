@@ -1,6 +1,6 @@
-package url.discovery.request;
+package webcrawler.urldiscovery.request;
 
-import url.discovery.config.UrlDiscoveryConstants;
+import webcrawler.urldiscovery.config.UrlDiscoveryConstants;
 import lombok.Getter;
 
 @Getter

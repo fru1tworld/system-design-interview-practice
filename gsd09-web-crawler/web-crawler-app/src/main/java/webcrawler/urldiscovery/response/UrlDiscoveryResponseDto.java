@@ -1,4 +1,4 @@
-package url.discovery.response;
+package webcrawler.urldiscovery.response;
 
 import lombok.Getter;
 

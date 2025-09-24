@@ -1,7 +1,7 @@
-package url.discovery.request;
+package webcrawler.urldiscovery.request;
 
-import url.discovery.response.UrlDiscoveryErrorDto;
-import url.discovery.response.UrlDiscoveryResponseDto;
+import webcrawler.urldiscovery.response.UrlDiscoveryErrorDto;
+import webcrawler.urldiscovery.response.UrlDiscoveryResponseDto;
 import lombok.Getter;
 
 import java.util.List;

@@ -1,11 +1,11 @@
 package fru1t.webcrawler.app.url.discovery.producer;
 
-import url.discovery.request.UrlDiscoveryRequestDto;
+import webcrawler.urldiscovery.request.UrlDiscoveryRequestDto;
 import event.event.Event;
 import event.event.EventPayload;
 import event.event.EventType;
 import event.event.payload.UrlDiscoveryCreatePayload;
-import url.discovery.producer.UrlDiscoveryEventProducer;
+import webcrawler.urldiscovery.producer.UrlDiscoveryEventProducer;
 import org.springframework.kafka.test.EmbeddedKafkaBroker;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

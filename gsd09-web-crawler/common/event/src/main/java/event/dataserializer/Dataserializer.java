@@ -17,7 +17,6 @@ public class Dataserializer {
         return new ObjectMapper()
                 .registerModule(new JavaTimeModule())
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
     }
 
     public static <T> T deserialize(String data, Class<T> clazz){

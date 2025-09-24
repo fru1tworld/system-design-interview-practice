@@ -1,0 +1,66 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.5'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'fru1t.webcrawler'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '24'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    // 메인 모듈들
+    implementation project(':web-crawler-app')
+    implementation project(':html-downloader')
+    implementation project(':common:event')
+
+    // Spring Boot 스타터
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.kafka:spring-kafka'
+
+    // Spring Boot 테스트
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+    // Kafka 테스트
+    testImplementation 'org.apache.kafka:kafka-clients'
+    testImplementation 'org.springframework.kafka:spring-kafka'
+
+    // 데이터베이스
+    testImplementation 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // JSON 처리
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind'
+
+    // 테스트 유틸리티
+    testImplementation 'org.awaitility:awaitility:4.2.0'
+    testImplementation 'org.assertj:assertj-core'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+test {
+    useJUnitPlatform()
+    maxParallelForks = 1  // 통합 테스트는 순차 실행
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
+    systemProperty 'spring.profiles.active', 'test'
+}

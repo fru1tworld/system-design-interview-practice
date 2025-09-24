@@ -1,9 +1,9 @@
 package fru1t.webcrawler.app.url.discovery.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import url.discovery.request.UrlDiscoveryRequestDto;
-import url.discovery.request.UrlDiscoveryBatchResponseDto;
-import url.discovery.response.UrlDiscoveryResponseDto;
+import webcrawler.urldiscovery.request.UrlDiscoveryRequestDto;
+import webcrawler.urldiscovery.request.UrlDiscoveryBatchResponseDto;
+import webcrawler.urldiscovery.response.UrlDiscoveryResponseDto;
 import event.event.Event;
 import event.event.EventPayload;
 import event.event.payload.UrlDiscoveryCreatePayload;

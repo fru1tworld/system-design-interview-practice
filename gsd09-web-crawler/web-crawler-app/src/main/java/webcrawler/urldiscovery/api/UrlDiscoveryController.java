@@ -1,9 +1,9 @@
-package url.discovery.api;
+package webcrawler.urldiscovery.api;
 
-import url.discovery.request.UrlDiscoveryRequestDto;
-import url.discovery.request.UrlDiscoveryBatchResponseDto;
-import url.discovery.response.UrlDiscoveryResponseDto;
-import url.discovery.service.UrlDiscoveryService;
+import webcrawler.urldiscovery.request.UrlDiscoveryRequestDto;
+import webcrawler.urldiscovery.request.UrlDiscoveryBatchResponseDto;
+import webcrawler.urldiscovery.response.UrlDiscoveryResponseDto;
+import webcrawler.urldiscovery.service.UrlDiscoveryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

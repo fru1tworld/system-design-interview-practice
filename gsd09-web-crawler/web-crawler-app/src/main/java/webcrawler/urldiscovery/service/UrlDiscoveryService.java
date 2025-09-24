@@ -1,10 +1,10 @@
-package url.discovery.service;
+package webcrawler.urldiscovery.service;
 
-import url.discovery.producer.UrlDiscoveryEventProducer;
-import url.discovery.request.UrlDiscoveryBatchResponseDto;
-import url.discovery.request.UrlDiscoveryRequestDto;
-import url.discovery.response.UrlDiscoveryErrorDto;
-import url.discovery.response.UrlDiscoveryResponseDto;
+import webcrawler.urldiscovery.producer.UrlDiscoveryEventProducer;
+import webcrawler.urldiscovery.request.UrlDiscoveryBatchResponseDto;
+import webcrawler.urldiscovery.request.UrlDiscoveryRequestDto;
+import webcrawler.urldiscovery.response.UrlDiscoveryErrorDto;
+import webcrawler.urldiscovery.response.UrlDiscoveryResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,9 +20,7 @@ public class UrlDiscoveryService {
 
     public UrlDiscoveryResponseDto createUrlDiscovery(UrlDiscoveryRequestDto requestDto) {
         try {
-            String crawlingId = urlDiscoveryEventProducer.publishUrlDiscoveryCreate(requestDto);
-
-            return UrlDiscoveryResponseDto.create(crawlingId, requestDto.getStartUrl(), requestDto.getMaxDepth());
+            return urlDiscoveryEventProducer.publishUrlDiscoveryCreate(requestDto);
 
         } catch (Exception e) {
             log.error("[UrlDiscoveryService.createUrlDiscovery] url={}", requestDto.getStartUrl(), e);
@@ -36,9 +34,8 @@ public class UrlDiscoveryService {
 
         for (UrlDiscoveryRequestDto requestDto : requestDtos) {
             try {
-                String crawlingId = urlDiscoveryEventProducer.publishUrlDiscoveryCreate(requestDto);
-
-                successResults.add(UrlDiscoveryResponseDto.create(crawlingId, requestDto.getStartUrl(), requestDto.getMaxDepth()));
+                UrlDiscoveryResponseDto responseDto = urlDiscoveryEventProducer.publishUrlDiscoveryCreate(requestDto);
+                successResults.add(responseDto);
 
             } catch (Exception e) {
                 log.error("[UrlDiscoveryService.createUrlDiscoveries] url={}", requestDto.getStartUrl(), e);

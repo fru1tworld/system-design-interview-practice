@@ -1,4 +1,4 @@
-package url.discovery.config;
+package webcrawler.urldiscovery.config;
 
 public final class UrlDiscoveryConstants {
     public static final Integer DEFAULT_MAX_DEPTH = 10;
@@ -6,4 +6,5 @@ public final class UrlDiscoveryConstants {
     private UrlDiscoveryConstants() {
         throw new UnsupportedOperationException("Utility class");
     }
+
 }

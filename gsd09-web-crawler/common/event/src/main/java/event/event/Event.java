@@ -6,11 +6,11 @@ import lombok.Getter;
 
 @Getter
 public class Event<T extends EventPayload> {
-    private Long eventId;
+    private String eventId;
     private EventType type;
     private T payload;
 
-    public static Event<EventPayload> of(Long eventId, EventType type, EventPayload payload) {
+    public static Event<EventPayload> of(String eventId, EventType type, EventPayload payload) {
     Event<EventPayload> event = new Event<>();
     event.eventId = eventId;
     event.type = type;
@@ -36,7 +36,7 @@ public class Event<T extends EventPayload> {
 
     @Getter
     private static class EventRaw{
-        private Long eventId;
+        private String eventId;
         private String type;
         private Object payload;
     }
