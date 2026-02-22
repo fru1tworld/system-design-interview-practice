@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Crawler</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🕷️ Web Crawler</h1>
+            <p>시작 URL을 입력하여 크롤링을 시작하세요</p>
+        </header>
+        
+        <main>
+            <form th:action="@{/crawl}" method="post" class="crawl-form">
+                <div class="input-group">
+                    <label for="startUrl">시작 URL:</label>
+                    <input type="url" id="startUrl" name="startUrl" 
+                           placeholder="https://example.com" 
+                           required class="url-input">
+                </div>
+                
+                <div class="input-group">
+                    <label for="depth">크롤링 깊이:</label>
+                    <input type="number" id="depth" name="depth" 
+                           value="1" min="1" max="5" 
+                           class="depth-input">
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    🚀 크롤링 시작
+                </button>
+            </form>
+            
+            <div th:if="${message}" class="message" th:classappend="${messageType}">
+                <p th:text="${message}"></p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

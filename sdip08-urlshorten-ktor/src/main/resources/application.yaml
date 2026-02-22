@@ -1,0 +1,12 @@
+ktor:
+  application:
+    modules:
+      - urlshorten.ApplicationKt.module
+  deployment:
+    port: 9999
+
+database:
+  driver: com.mysql.cj.jdbc.Driver
+  url: ${DATABASE_URL:-jdbc:mysql://localhost:3307/fru1t_gsd08}
+  user: ${DATABASE_USER:-root}
+  password: ${DATABASE_PASSWORD:-fru1t}

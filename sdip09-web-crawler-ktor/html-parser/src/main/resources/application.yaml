@@ -1,0 +1,10 @@
+ktor:
+  application:
+    modules:
+      - htmlparser.ApplicationKt.module
+  deployment:
+    port: 10003
+
+kafka:
+  bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:-localhost:9092}
+  group-id: html-parser-group
