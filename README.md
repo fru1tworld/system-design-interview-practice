@@ -2,8 +2,9 @@
 
 가상 면접 사례로 배우는 대규모 시스템 설계를 직접 구현하는 저장소입니다.
 
-- Java + Spring Boot
-- Kotlin + Ktor
+## Tech Stack
+
+`Java 21` `Spring Boot` `Spring Data JPA` `Kotlin` `Ktor` `Exposed ORM` `MySQL` `Redis`
 
 # 목록
 
